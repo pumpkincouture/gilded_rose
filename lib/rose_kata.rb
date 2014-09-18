@@ -1,0 +1,3 @@
+class GildedRose
+
+end
