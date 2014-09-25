@@ -1,4 +1,4 @@
-require_relative '../lib/rose_kata.rb'
+require_relative '../lib/gilded_rose'
 
 RSpec.configure do |config|
   config.failure_color = :red
