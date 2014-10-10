@@ -32,9 +32,7 @@ class GildedRose
             end
           end
         end
-
         item.update_sellin
-
         if item.sell_in < 0
           if item.name != "Aged Brie"
             if item.name != "Backstage passes to a TAFKAL80ETC concert"
@@ -49,5 +47,4 @@ class GildedRose
       end
     end
   end
-
 end
