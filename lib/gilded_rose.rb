@@ -2,7 +2,7 @@ require_relative 'item'
 
 class GildedRose
 
-	attr_reader :items
+	attr_reader :items, :standard_items
 
   @items = []
 
@@ -16,35 +16,53 @@ class GildedRose
     @items << Item.new("Conjured Mana Cake", 3, 6)
   end
 
-  def update_quality
+  def isolate_items
+    standard_items = []
     @items.each do |item|
-      unless item.name == "Sulfuras, Hand of Ragnaros"
-        if item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert"
-          item.decrease_quality
-        else
-          item.increment_quality
-          if item.name == "Backstage passes to a TAFKAL80ETC concert"
-            if item.sell_in < 11
-              item.increment_quality
-            end
-            if item.sell_in < 6
-              item.increment_quality
-            end
-          end
-        end
-        item.update_sellin
-        if item.sell_in < 0
-          if item.name != "Aged Brie"
-            if item.name != "Backstage passes to a TAFKAL80ETC concert"
-              item.decrease_quality
-            else
-              item.quality = 0
-            end
-          else
-            item.increment_quality
-          end
-        end
+      if item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert" && item.name != "Sulfuras, Hand of Ragnaros"
+        standard_items << item
       end
     end
+    standard_items
   end
+
+  def update_quality(standard_items)
+    standard_items.each do |item|
+      item.decrease_quality
+      item.update_sellin
+    end
+  end
+
+#     @items.each do |item|
+
+#       unless item.name == "Sulfuras, Hand of Ragnaros"
+#         if item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert"
+#           item.decrease_quality
+#         else
+#           item.increment_quality
+#           if item.name == "Backstage passes to a TAFKAL80ETC concert"
+#             if item.sell_in < 11
+#               item.increment_quality
+#             end
+#             if item.sell_in < 6
+#               item.increment_quality
+#             end
+#           end
+#         end
+#         item.update_sellin
+#         if item.sell_in < 0
+#           if item.name != "Aged Brie"
+#             if item.name != "Backstage passes to a TAFKAL80ETC concert"
+#               item.decrease_quality
+#             else
+#               item.quality = 0
+#             end
+#           else
+#             item.increment_quality
+#           end
+#         end
+#       end
+#     end
+#   end
+# end
 end
