@@ -16,7 +16,7 @@ class GildedRose
     @items << Item.new("Conjured Mana Cake", 3, 6)
   end
 
-  def isolate_items
+  def isolate_standard_items
     standard_items = []
     @items.each do |item|
       if item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert" && item.name != "Sulfuras, Hand of Ragnaros"
@@ -32,6 +32,9 @@ class GildedRose
       item.update_sellin
     end
   end
+
+  # def update
+
 
 #     @items.each do |item|
 
