@@ -18,5 +18,5 @@ class Item
 
   def update_sellin
     @sell_in -= 1
-  end
+  end 
 end
