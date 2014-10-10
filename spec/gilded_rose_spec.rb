@@ -17,7 +17,7 @@ describe GildedRose do
     end
 
     def call_update_quality(n)
-      n.times { @rose.update_quality(@rose.isolate_items) }
+      n.times { @rose.update_quality(@rose.isolate_standard_items) }
     end
 
     def get_sell_ins
@@ -39,19 +39,19 @@ describe GildedRose do
     before :each do
       @rose = GildedRose.new
       @items = @rose.items
-      @standard_items = @rose.isolate_items
+      @standard_items = @rose.isolate_standard_items
     end
 
     it "separates non standard items" do
-      expect(@rose.isolate_items).not_to include("Backstage passes to a TAFKAL80ETC concert")
+      expect(@rose.isolate_standard_items).not_to include("Backstage passes to a TAFKAL80ETC concert")
     end
 
     it "separates non standard items" do
-      expect(@rose.isolate_items).not_to include("Sulfuras, Hand of Ragnaros")
+      expect(@rose.isolate_standard_items).not_to include("Sulfuras, Hand of Ragnaros")
     end
 
     it "separates non standard items" do
-      expect(@rose.isolate_items).not_to include("Aged Brie")
+      expect(@rose.isolate_standard_items).not_to include("Aged Brie")
     end
 
     it "updates sell in  after one day" do
@@ -61,48 +61,47 @@ describe GildedRose do
 
     it "updates quality after one day" do
       call_update_quality(1)
-      get_quality
       assert_quality_updates([19, 6, 5])
     end
 
-    xit "updates sell in after 5 days" do
+    it "updates sell in after 5 days" do
       call_update_quality(5)
-      assert_sellin_updates([5, -3, 0, 0, 10, -2])
+      assert_sellin_updates([5, 0, -2])
     end
 
-    xit "updates quality after 5 days" do
+    it "updates quality after 5 days" do
       call_update_quality(5)
-      assert_quality_updates([15, 8, 2, 80, 25, 0])
+      assert_quality_updates([15, 2, 1])
     end
 
-    xit "updates sell in after 10 days" do
+    it "updates sell in after 10 days" do
       call_update_quality(10)
-      assert_sellin_updates([0, -8, -5, 0, 5, -7])
+      assert_sellin_updates([0, -5, -7])
     end
 
-    xit "updates quality after 10 days" do
+    it "updates quality after 10 days" do
       call_update_quality(10)
-      assert_quality_updates([10, 18, 0, 80, 35, 0])
+      assert_quality_updates([10, 0, 0])
     end
 
-    xit "updates sell in after 15 days" do
+    it "updates sell in after 15 days" do
       call_update_quality(15)
-      assert_sellin_updates([-5, -13, -10, 0, 0, -12])
+      assert_sellin_updates([-5, -10, -12])
     end
 
-    xit "updates quality after 15 days" do
+    it "updates quality after 15 days" do
       call_update_quality(15)
-      assert_quality_updates([0, 28, 0, 80, 50, 0])
+      assert_quality_updates([5, 0, 0])
     end
 
-    xit "updates sell in after 20 days" do
+    it "updates sell in after 20 days" do
       call_update_quality(20)
-      assert_sellin_updates([-10, -18, -15, 0, -5, -17])
+      assert_sellin_updates([-10, -15, -17])
     end
 
-    xit "updates quality after 20 days" do
+    it "updates quality after 20 days" do
       call_update_quality(20)
-      assert_quality_updates([0, 38, 0, 80, 0, 0])
+      assert_quality_updates([0, 0, 0])
     end
   end
 end
