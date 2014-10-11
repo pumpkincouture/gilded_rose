@@ -39,6 +39,7 @@ describe GildedRose do
     before :each do
       @rose = GildedRose.new
       @items = @rose.items
+      @item_factory = ItemFactory.new
     end
 
     it "updates sell in  after one day" do
@@ -51,6 +52,17 @@ describe GildedRose do
       assert_quality_updates([19, 1, 6, 80, 21, 5])
     end
 
+    it "updates sell in after 4 days" do
+      call_update_quality(4)
+      assert_sellin_updates([6, -2, 1, 0, 11, -1])
+    end
+
+    it "updates quality after 4 days" do
+      call_update_quality(4)
+      assert_quality_updates([16, 4, 3, 80, 24, 2])
+    end
+
+
     it "updates sell in after 5 days" do
       call_update_quality(5)
       assert_sellin_updates([5, -3, 0, 0, 10, -2])
@@ -58,8 +70,19 @@ describe GildedRose do
 
     it "updates quality after 5 days" do
       call_update_quality(5)
-      assert_quality_updates([15, 8, 2, 80, 25, 0])
+      assert_quality_updates([15, 5, 2, 80, 26, 1])
     end
+
+    it "updates sell in after 9 days" do
+      call_update_quality(9)
+      assert_sellin_updates([1, -7, -4, 0, 6, -6])
+    end
+
+    it "updates quality after 9 days" do
+      call_update_quality(9)
+      assert_quality_updates([11, 9, 0, 80, 34, 0])
+    end
+
 
     it "updates sell in after 10 days" do
       call_update_quality(10)
@@ -68,7 +91,7 @@ describe GildedRose do
 
     it "updates quality after 10 days" do
       call_update_quality(10)
-      assert_quality_updates([10, 18, 0, 80, 35, 0])
+      assert_quality_updates([10, 10, 0, 80, 37, 0])
     end
 
     it "updates sell in after 15 days" do
@@ -78,15 +101,16 @@ describe GildedRose do
 
     it "updates quality after 15 days" do
       call_update_quality(15)
-      assert_quality_updates([0, 28, 0, 80, 50, 0])
+      get_quality
+      assert_quality_updates([5, 15, 0, 80, 0, 0])
     end
 
-    it "updates sell in after 20 days" do
+    xit "updates sell in after 20 days" do
       call_update_quality(20)
       assert_sellin_updates([-10, -18, -15, 0, -5, -17])
     end
 
-    it "updates quality after 20 days" do
+    xit "updates quality after 20 days" do
       call_update_quality(20)
       assert_quality_updates([0, 38, 0, 80, 0, 0])
     end
