@@ -1,4 +1,5 @@
 require_relative '../lib/gilded_rose'
+require_relative '../lib/item_factory'
 
 RSpec.configure do |config|
   config.failure_color = :red
