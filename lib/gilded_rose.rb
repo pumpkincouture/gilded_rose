@@ -26,6 +26,15 @@ class GildedRose
     standard_items
   end
 
+  def isolate_special_items
+    special_items = []
+    @items.each do |item|
+      if item.name == "Aged Brie" && item.name == "Backstage passes to a TAFKAL80ETC concert" && item.name == "Sulfuras, Hand of Ragnaros"
+        special_items << item
+      end
+    special_items
+  end
+
   def update_quality(standard_items)
     standard_items.each do |item|
       item.decrease_quality
@@ -33,39 +42,18 @@ class GildedRose
     end
   end
 
-  # def update
-
-
-#     @items.each do |item|
-
-#       unless item.name == "Sulfuras, Hand of Ragnaros"
-#         if item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert"
-#           item.decrease_quality
-#         else
-#           item.increment_quality
-#           if item.name == "Backstage passes to a TAFKAL80ETC concert"
-#             if item.sell_in < 11
-#               item.increment_quality
-#             end
-#             if item.sell_in < 6
-#               item.increment_quality
-#             end
-#           end
-#         end
-#         item.update_sellin
-#         if item.sell_in < 0
-#           if item.name != "Aged Brie"
-#             if item.name != "Backstage passes to a TAFKAL80ETC concert"
-#               item.decrease_quality
-#             else
-#               item.quality = 0
-#             end
-#           else
-#             item.increment_quality
-#           end
-#         end
-#       end
-#     end
-#   end
-# end
+  def update_special_items(special_items)
+    case special_items.name
+      when "Aged Brie"
+        item.increase_quality
+        item.update_sellin
+      when "Backstage passes to a TAFKAL80ETC concert"
+        item.increase_quality
+        item.update_quality_by_two
+        item.update_quality_by_three
+        item.delete_quality
+      when "Sulfuras, Hand of Ragnaros"
+        item.maintain_quality_and_quantity
+      end
+  end
 end
