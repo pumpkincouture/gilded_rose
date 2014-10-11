@@ -19,4 +19,21 @@ class Item
   def update_sellin
     @sell_in -= 1
   end 
+
+  def update_quality_by_two
+    @quality += 2 if @sell_in <= 10
+  end
+
+  def update_quality_by_three
+    @quality += 3 if @sell_in <= 5
+  end
+
+  def delete_quality
+    @quality = 0 if @sell_in <= 0
+  end
+
+  def maintain_quality_and_quantity
+    @quality
+    @sell_in
+  end
 end
