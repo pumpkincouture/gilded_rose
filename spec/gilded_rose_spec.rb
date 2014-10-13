@@ -42,14 +42,14 @@ describe GildedRose do
       @item_factory = ItemFactory.new
     end
 
-    it "updates sell in  after one day" do
+    it "updates sell in after one day" do
       call_update_quality(1)
       assert_sellin_updates([9, 1, 4, 0, 14, 2])
     end
 
     it "updates quality after one day" do
       call_update_quality(1)
-      assert_quality_updates([19, 1, 6, 80, 21, 5])
+      assert_quality_updates([19, 1, 6, 80, 21, 4])
     end
 
     it "updates sell in after 4 days" do
@@ -59,7 +59,7 @@ describe GildedRose do
 
     it "updates quality after 4 days" do
       call_update_quality(4)
-      assert_quality_updates([16, 4, 3, 80, 24, 2])
+      assert_quality_updates([16, 4, 3, 80, 24, 0])
     end
 
 
@@ -70,7 +70,7 @@ describe GildedRose do
 
     it "updates quality after 5 days" do
       call_update_quality(5)
-      assert_quality_updates([15, 5, 2, 80, 26, 1])
+      assert_quality_updates([15, 5, 2, 80, 26, 0])
     end
 
     it "updates sell in after 9 days" do
