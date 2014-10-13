@@ -9,5 +9,4 @@ class BrieItem < Item
 	def update_sellin
 		@sell_in -= 1
 	end
-
 end
