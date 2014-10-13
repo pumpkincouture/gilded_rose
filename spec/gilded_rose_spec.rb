@@ -91,7 +91,7 @@ describe GildedRose do
 
     it "updates quality after 10 days" do
       call_update_quality(10)
-      assert_quality_updates([10, 10, 0, 80, 37, 0])
+      assert_quality_updates([10, 10, 0, 80, 36, 0])
     end
 
     it "updates sell in after 15 days" do
@@ -101,18 +101,17 @@ describe GildedRose do
 
     it "updates quality after 15 days" do
       call_update_quality(15)
-      get_quality
       assert_quality_updates([5, 15, 0, 80, 0, 0])
     end
 
-    xit "updates sell in after 20 days" do
+    it "updates sell in after 20 days" do
       call_update_quality(20)
       assert_sellin_updates([-10, -18, -15, 0, -5, -17])
     end
 
-    xit "updates quality after 20 days" do
+    it "updates quality after 20 days" do
       call_update_quality(20)
-      assert_quality_updates([0, 38, 0, 80, 0, 0])
+      assert_quality_updates([0, 20, 0, 80, 0, 0])
     end
   end
 end
